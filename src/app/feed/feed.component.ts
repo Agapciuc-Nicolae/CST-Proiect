@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {UserPostsService} from '../services/user-posts.service';
-import {UserService} from '../services/user.service';
 
 export class UserPost {
   id: number;
@@ -25,20 +24,19 @@ export class UserPost {
 }
 
 @Component({
-  selector: 'app-my-profile',
-  templateUrl: './my-profile.component.html',
-  styleUrls: ['./my-profile.component.css']
+  selector: 'app-feed',
+  templateUrl: './feed.component.html',
+  styleUrls: ['./feed.component.css'],
 })
-export class MyprofileComponent implements OnInit {
+export class FeedComponent implements OnInit {
 
   userPosts: UserPost[] = [];
-  profileName: string = window.localStorage.getItem('UserName');
 
   constructor(
-    private userPostsService: UserPostsService, private userService: UserService) {  }
+    private userPostsService: UserPostsService) {  }
 
   getUserPosts(){
-    this.userPostsService.getMyPosts(window.localStorage.getItem('UserName')).subscribe(
+    this.userPostsService.getAllPosts().subscribe(
       (userPosts: UserPost[]) => {
         this.userPosts = userPosts;
       },
@@ -51,6 +49,7 @@ export class MyprofileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserPosts();
+
   }
 
 }

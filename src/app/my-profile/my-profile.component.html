@@ -1,17 +1,6 @@
-<div class="">
-  <div class="">
-    <div ng2FileDrop
-         [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
-         (fileOver)="fileOverBase($event)"
-         [uploader]="uploader"
-         class="well my-drop-zone">
-      Base drop zone
-    </div>
-  </div>
-  <input type="file" ng2FileSelect [uploader]="uploader"
-         (onFileSelected)="onFileSelected()"
-  />
-  <div class="alert alert-danger" *ngIf="wrongFileType">
-    Allowed file type is: {{allowedFileType}}
-  </div>
+<div class="feed">
+  <h2> Welcome {{ this.profileName }} to your profile.</h2>
+  <h4>Your Posts</h4>
+  <app-user-post *ngFor="let userPost of userPosts" [userPost]="userPost">
+  </app-user-post>
 </div>
